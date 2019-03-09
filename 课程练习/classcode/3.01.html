@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	//一 js 的数据类型（6种，两种划分）
+	//基本（原始）类型：（Number、String、Boolean、Null、Undefined
+	//引用（对象）：（Object（Array、Function、Date、Error等））
+	 
+
+	//object对象
+	//object1在栈区，"username":"zhangsan"在堆区
+	//object2在栈区，object1与object2指向同一个引用（堆区中的"username":"zhangsan"）(根据堆区找对应得值)
+	//所以一个改变，另一个也改变
+	//变量在栈区或堆区，变量值在堆区
+	//eg1
+	var object1={"username":"zhangsan"};
+	var object2=object1;
+	object2.username="lisa";
+	console.log(object1);//shuchu:{username: "lisa"}
+	//eg2
+	var arr1=[1,2,3,4];
+	var arr2=arr1;
+	arr2[0]=5;
+	console.log(arr1);//shuchu:[5,2,3,4]
+	// 数据类型检测方法：typeof、instanceof
+	//typeof
+	//==判断值是否相等
+	//===判断值和类型是否相等
+	var num3=10;
+	var num4=10;
+	console.log(num3==num4);//shuchu:true
+	//在堆区分配任意
+	var object3={};
+	var object4={};
+	console.log(object3==object4);//shuchu:false
+	//Number类型的值：
+	//	整数与浮点型：
+	//		NaN：数值不一样的数
+	//		Infinity：正无穷
+	//		-Infinity：负无穷
+	//      +0，-0
+		var x = Number("xis011");
+		console.log(x);//NaN
+		isNaN(x);//true [判断是否为Number类型]
+
+	//String类型的值：
+	//	split(分隔符，生成数组元素个数)
+	//	将字符串以待定分隔符分割，生成数组
+		var str = "ab_cd_ef"
+		str.slice(0,2);
+		console.log(str.split("_"));
+		//str.substr(截取的起始位置，截取长度)
+			console.log(str.substr(3,2));
+		//	转义字符
+		//split(分隔符，生成数组的元素个数)
+		//将字符串以特定分隔符分割，生成数组
+		//字符串常用操作
+		var str = "abc_def_ghi_jkl_mn";
+		// str.split("_");
+		// ["abc", "def", "ghi", "jkl", "mn"]
+		// str.split("_",2);
+		//["abc", "def"]
+		// str.concat("_opq");
+		//"abc_def_ghi_jkl_mn_opq"
+		//substr截取的起始位置，截取的长度
+		// str.substr(4,7);
+		//def_ghi"
+		// str.substring(4,7);
+		// str.slice(2);
+		// str.slice(2,5);
+		// str.slice(-2);
+		// str.slice(2,-2);
+	//Boolean类型：true false
+
+	//Null与Undefined类型：null undifined
+
+		var str1 = "abcdef";
+		str.substr(0,2);
+	//包装对象
+	//装箱操作（上操作其实是做的下操作）
+		var str1 = "abcdef";
+		var strObject = new String(str1);
+		strObject.substr(0,2)；
+	//临时对象在使用之后立即释放
+		var str2 = "test";
+		str2.p = 4;///设置临时对象属性
+		var t = str.p;
+		console.log(t)//临时对象已释放，再输出t时为undefined
+
+	//数据类型转化
+	//	显示转化
+	//		Boolean（）、Number（）、String（）、Object（）
+	//		数转为字符串（toString()、toFixed()、toPrecision()、toExponential()）
+	//		字符串转为数字（parseInt()、parseFloat()）
+	//		对象转换为原始值（toString()、valueOf()）
+	//	隐式转化
+	//		使用关系运算符时的转换（==、>、<、引用类型和基本类型比较时）
+	//		使用算数运算符时的转换（'img'+ 3 + '.jpg'; “25”-0;）
+	//		使用逻辑运算符时的转换（ !!0; ）
+	//		执行流程语句时的转换（if(obj){...}）
+	
+</script>
+</body>
+</html>
