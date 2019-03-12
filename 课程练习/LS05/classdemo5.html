@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="/javascripts/application.js" type="text/javascript" charset="utf-8" async defer>
+	//JS赋值运算符
+	//==
+	var a = 34;
+	if(a = 45){
+	    console.log("是否会输出？");
+	}
+	//发反写
+	var a=45;
+	if(54==a){
+		console.log("pandeng");
+	}
+
+
+	//===先看类型，类型相同，在进行值的判断
+	if (a1 === a2){
+
+	}
+
+	//js算数运算符
+	//注意隐试转化
+	//算数运算符与类型的转化
+	console.log("1"+"2"); //"12"
+	console.log("1"+2); //"12"
+	console.log(1+{}); //"1[object Object]"
+	console.log(true+true); //2
+	console.log("5"-2); //3
+	//一元运算符
+	//注意++和--的隐式类型转换
+	var x = "1";
+	console.log(++x); //2
+	//++x先进行运算，在进行输出
+	console.log(x++); //1
+	//x++先进行输出，在进行运算
+	var x = "1";
+	console.log(x+1);//11
+
+	//关系运算符
+	//== 如果类型不同，先转换再比较，注：引用类型到基本类型的转换方向
+	//注
+	NaN===NaN//false
+	{}==={}//false
+	//===若类型不同则false，若类型相同则判断同 
+	//！=（相当于==的逆运算）
+	//！==（先判断类型，若类型不同则返回true，相当于===的逆运算）
+	//eg
+	console.log(3===3);//true
+	console.log(3==="3");//false
+	console.log(3=="3");//true
+	console.log(3==new String(3));//true
+	console.log(3===new String(3));//false
+	var obj1 = new String("xyz");
+	var obj2 = new String("xyz");
+	console.log("xyz"===obj1);//false
+	console.log(obj1 == obj2);//false
+	console.log(obj1 === obj2);//false
+	console.log(obj1 == new String("xyz"));//false
+	var obj1 = new String("xyz");
+	var obj2 = new String("xyz");
+	console.log("xyz"!=obj1);//false
+	console.log(obj1 !== obj2);//true
+	console.log(obj1 != obj2);//true
+	console.log(obj1 != new String("xyz"));//true
+	//存在二义性的代码，与预期的结果不一致
+	var obj1 = {x:2,y:[1],z:false};
+	var obj2 = {x:2,y:[1],z:new Boolean(false)};
+	//var obj2 = {x:2,y:[1],z:Boolean(new Boolean(false))};
+	console.log(obj1.z == obj2.z);//true
+
+
+	//06
+	//逻辑与、或的基本理解
+	//对于&&（与）来说，除了两侧都为真时为真，其他情况都为假
+	console.log(2>1&&4<5);//true
+	//对于||（或）来说，除了两侧都为假时为假，其他情况都为真
+	console.log(2>1||4<5);//true
+	//深层理解
+	//当逻辑运算符&&和||两侧的操作数不是布尔类型时 首先将左操作数转换成布尔类型对转换后的左操作数进行逻辑判断（true or false）根据短路原则返回原始左操作数或原始右操作数
+	//短路原则
+	//对于&&，转换后的左操作数若为true，则直接返回原始右操作数，若为false则直接返回原始左操作数
+	console.log(2&&4);//4
+	console.log(0&&4);//0
+	console.log(null&&10);//null（null为假）
+	console.log({}&&10);//10（{}为真）
+	console.log({x:2}&&{name:"Jack"});//{name: "Jack"}
+	//对于| |，转换后的左操作数若为true，则直接返回原始左操作数，若为false则直接返回原始右操作数
+	console.log(2||4);//2
+	console.log(0||4);//4
+	//所有对象转换为布尔类型 都为 true
+	console.log((new Boolean(false))&&234);//234
+	//通过短路原则，可以用&&和||来实现复杂的条件语句来代替if-else
+	var score = 76;
+	if(score>90){
+	    console.log("优");
+	}else if(score>75){
+	    console.log("良");
+	}else if(score>60){
+	    console.log("及格");
+	}else{
+	    console.log("不及格");
+	}
+	//通过&&和||的组合实现如上功能，注：小括号优先级最高
+console.log((score>90&&"优")||(score>75&&"良")||(score>60&&"及格")||"不及格");
+	//定义函数的形参和调用函数的实参可以不一致
+	function sum(x,y,z){
+		x=x;
+		y=y;
+		z=z;
+		return x+y+z;
+	}
+	console.log(sum());//NaN
+	function sum(x,y,z){
+		x=x;
+		y=y;
+		z=z;
+		return x+y+z;
+	}
+	console.log(sum(4,5,6));//15
+
+	//ES6中设置默认值
+	function sum1(x,y=2,z=3){
+		return x+y+z;
+	}
+
+	//07
+	//函数定义方式（3种）
+	//通过函数声明的形式来定义（要有函数名）
+	function max(a,b){
+	    return a>b?a:b;
+	}
+	max(2,3);
+	//通过函数表达式的形式来定义（可以是没有函数名的匿名函数，有名的话方便调用栈追踪）
+	var max = function (a,b){ //匿名函数
+	    return a>b?a:b;
+	};
+	max(2,3);
+	//通过Function构造函数实例化的形式来定义（JS中函数也是对象，函数对象
+	var sum1=new function("x","y","return x+y");
+	fn1(1,2);
+	
+	//函数调用方式（4种，注意函数的主体）{
+
+	}
+	</script>
+</body>
+</html>
